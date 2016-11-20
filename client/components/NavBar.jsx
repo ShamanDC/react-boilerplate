@@ -4,6 +4,7 @@ import request from 'superagent';
 
 import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
+import Divider from 'material-ui/Divider';
 import MenuItem from 'material-ui/MenuItem';
 import ActionExitToApp from 'material-ui/svg-icons/action/exit-to-app';
 import Avatar from 'material-ui/Avatar';
@@ -68,15 +69,18 @@ export default class NavBar extends React.Component {
           open={this.state.drawerOpen}
           docked={false}
           onRequestChange={() => { this.setState({drawerOpen: false}); }}
-          style={styles.drawer} >
-            { this.state.user ?
-              <Avatar src={this.state.user.avatar_url} size={230} style={styles.avatar}/> :
-              null }
-            <MenuItem
-              leftIcon={<ActionExitToApp />}
-              onTouchTap={this.handleLogout.bind(this)}>
-              Logout
-            </MenuItem>
+        >
+          <div style={styles.drawer}>
+          { this.state.user ?
+            <Avatar src={this.state.user.avatar_url} size={230} style={styles.avatar}/> :
+            null }
+          </div>
+          <Divider />
+          <MenuItem
+            leftIcon={<ActionExitToApp />}
+            onTouchTap={this.handleLogout.bind(this)}>
+            Logout
+          </MenuItem>
         </Drawer>
       </div>
     );
